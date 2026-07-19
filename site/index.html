@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ParkScout · UES</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🅿️</text></svg>">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>ParkScout <span class="muted">· UES</span></h1>
+    <div class="sub">open-spot odds around E 68th &amp; Madison</div>
+  </div>
+  <span id="ageChip" class="chip-age" data-tone="stale">loading…</span>
+</header>
+
+<section id="bets" class="bets" aria-label="best bets"></section>
+<section id="windows" class="windows" aria-label="street cleaning windows"></section>
+
+<section class="map-wrap">
+  <svg id="map" role="img" aria-label="block map of open-spot probabilities"></svg>
+  <div class="legend">
+    <span class="lg-ramp" aria-hidden="true"></span>
+    <span class="muted">0% → likely open</span>
+    <span class="lg-item"><span class="lg-warn"></span>🧹 cleaning now</span>
+    <span class="lg-item"><span class="lg-cam"></span>camera</span>
+    <span class="lg-item"><span class="lg-home"></span>home</span>
+  </div>
+</section>
+
+<section id="panel" hidden></section>
+
+<section class="hunt">
+  <div class="hunt-head">
+    <button id="huntBtn">Start hunt mode</button>
+    <span id="huntStatus" class="muted">runs a detector in your browser while open — near-live departures &amp; arrivals</span>
+  </div>
+  <div id="huntGrid" class="hunt-grid"></div>
+  <ul id="huntFeed" class="hunt-feed"></ul>
+</section>
+
+<section class="recent-wrap">
+  <h3>Predicted-spot ledger</h3>
+  <ul id="recent"></ul>
+</section>
+
+<footer>
+  <div id="calib" class="muted"></div>
+  <p>Personal research tool — probabilistic hints, not truth. Obey posted signs.
+  Camera imagery: NYC DOT via NYCTMC public feeds (vehicle counts only, no plates, no identities).
+  Regulations: NYC Open Data. Not affiliated with NYC DOT.</p>
+</footer>
+
+<div id="tip" class="tip" hidden></div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

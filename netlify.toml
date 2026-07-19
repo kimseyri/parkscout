@@ -1,0 +1,13 @@
+[build]
+  publish = "site"
+  command = ""
+
+[functions]
+  directory = "netlify/functions"
+
+# Live state is committed to the `data` branch by the GitHub Action;
+# proxying it here means the site always fetches same-origin /state/*.
+[[redirects]]
+  from = "/state/*"
+  to = "https://raw.githubusercontent.com/kimseyri/parkscout/data/:splat"
+  status = 200
