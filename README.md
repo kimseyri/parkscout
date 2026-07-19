@@ -1,8 +1,9 @@
 # ParkScout · UES
 
-Personal street-parking predictor for the blocks within ~0.5 mi of E 68th St & Madison Ave, Manhattan.
-It estimates, per side-street block, the probability that at least one curb spot is open **right now** —
-and timestamps every prediction so you know how stale it is.
+Personal street-parking predictor for the Upper East Side core around E 68th St & Madison Ave:
+**E 65th–72nd between 5th Ave and Lexington** (24 blocks). It estimates, per side-street block,
+the probability that at least one curb spot is open **right now** — and timestamps every
+prediction so you know how stale it is.
 
 **This is a probabilistic hobby tool.** It never sees whole curbs. Obey posted signs; predictions are hints, not truth.
 
@@ -15,9 +16,9 @@ Three signal layers, combined in a rules-first Bayesian score per block:
    The most predictable availability event in the neighborhood is the **post-street-cleaning churn
    window** (~the 45 min after an ASP window ends). Time-of-day / day-of-week turnover curves fill
    in the rest.
-2. **Camera flux (weak, live evidence).** A GitHub Action polls 12 NYC DOT traffic cameras around
-   the neighborhood every ~5–10 min, counts vehicles with YOLOv8-nano (ONNX), and commits the
-   counts to the `data` branch. Net outflow near a block nudges its score up; net inflow kills
+2. **Camera flux (weak, live evidence).** A GitHub Action polls the 3 NYC DOT cameras with
+   sightlines into the zone (5 Ave @ 66, Park @ 72, Lexington @ 72) every ~5–10 min, counts
+   vehicles with YOLOv8-nano (ONNX), and commits the counts to the `data` branch. Net outflow near a block nudges its score up; net inflow kills
    predictions (a car that entered and didn't leave probably took the spot).
 3. **Hunt mode (strong, live evidence — while the dashboard is open).** The browser polls the same
    cameras every ~12 s through a tiny proxy and runs DETR object detection locally

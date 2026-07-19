@@ -92,6 +92,9 @@ def main():
         state["cameras"][cid] = entry
 
     state["updated_at"] = ts
+    # drop entries for cameras no longer in the poll set
+    keep = {cam["id"] for cam in cams}
+    state["cameras"] = {k: v for k, v in state["cameras"].items() if k in keep}
     state_path.write_text(json.dumps(state, separators=(",", ":")) + "\n")
 
     hist_dir = data_dir / "history"

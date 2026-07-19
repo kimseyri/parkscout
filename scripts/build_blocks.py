@@ -33,7 +33,10 @@ AVE_ORDER = ["5AV", "MAD", "PARK", "LEX", "3AV", "2AV"]
 AVE_SHORT = {"5AV": "5th", "MAD": "Mad", "PARK": "Park", "LEX": "Lex", "3AV": "3rd", "2AV": "2nd"}
 AVE_FULL = {"5AV": "5th Ave", "MAD": "Madison Ave", "PARK": "Park Ave",
             "LEX": "Lexington Ave", "3AV": "3rd Ave", "2AV": "2nd Ave"}
-STREETS = list(range(59, 79))  # E 59 .. E 78
+STREETS = list(range(65, 73))  # E 65 .. E 72
+# Grid columns for the zone; AVE_ORDER keeps the full west->east sequence so
+# sign rows referencing 3rd/2nd still parse (and simply match no block).
+BLOCK_AVES = ["5AV", "MAD", "PARK", "LEX"]
 
 SODA = "https://data.cityofnewyork.us/resource/nfid-uabd.json"
 
@@ -238,15 +241,15 @@ def main():
         print(f"WARNING: regulations fetch failed ({e}); shipping geometry only. "
               f"Rerun this script later to fill ASP rules.")
 
-    lng68 = {ave: intersection(ave, 68)[1] for ave in AVE_ORDER}
+    lng68 = {ave: intersection(ave, 68)[1] for ave in BLOCK_AVES}
     lo, hi = min(lng68.values()), max(lng68.values())
-    ave_x = {ave: round((lng68[ave] - lo) / (hi - lo), 4) for ave in AVE_ORDER}
+    ave_x = {ave: round((lng68[ave] - lo) / (hi - lo), 4) for ave in BLOCK_AVES}
 
     blocks = []
     asp_sides = 0
     for st in STREETS:
-        for i in range(len(AVE_ORDER) - 1):
-            west, east = AVE_ORDER[i], AVE_ORDER[i + 1]
+        for i in range(len(BLOCK_AVES) - 1):
+            west, east = BLOCK_AVES[i], BLOCK_AVES[i + 1]
             p1, p2 = intersection(west, st), intersection(east, st)
             cen = ((p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)
             d = miles(cen, HOME)
@@ -271,7 +274,7 @@ def main():
 
     out = {"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "regsSource": regs_source, "home": {"lat": HOME[0], "lng": HOME[1]},
-           "aveOrder": AVE_ORDER, "aveShort": AVE_SHORT, "aveFull": AVE_FULL,
+           "aveOrder": BLOCK_AVES, "aveShort": AVE_SHORT, "aveFull": AVE_FULL,
            "aveX": ave_x, "streets": STREETS, "blocks": blocks}
     OUT.write_text(json.dumps(out, separators=(",", ":")) + "\n")
     n_in = sum(1 for b in blocks if b["inRadius"])

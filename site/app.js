@@ -70,14 +70,14 @@ function buildMap() {
   const yFor = (st) => PADT + (top - st) * ROW;
   const xFor = (ave) => PADL + App.blocks.aveX[ave] * (W - PADL - PADR);
   App.geo = { x: xFor, y: yFor };
-  const H = yFor(57) + PADB;
+  const H = yFor(streets[0]) + PADB;
 
   const svg = $("#map");
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
 
   for (const ave of App.blocks.aveOrder) {
     const x = xFor(ave);
-    el("line", { x1: x, y1: yFor(top) - 12, x2: x, y2: yFor(59) + 12, class: "ave-line" }, svg);
+    el("line", { x1: x, y1: yFor(top) - 12, x2: x, y2: yFor(streets[0]) + 12, class: "ave-line" }, svg);
     el("text", { x, y: yFor(top) - 38, class: "ave-label", "text-anchor": "middle" }, svg)
       .textContent = App.blocks.aveShort[ave];
   }

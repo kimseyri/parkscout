@@ -1,18 +1,9 @@
 {
-  "note": "NYC DOT cameras polled by the scraper and hunt mode. Snapshot: https://webcams.nyctmc.org/api/cameras/{id}/image. ave/st place the dot on the schematic map grid.",
+  "note": "NYC DOT cameras polled by the scraper and hunt mode. Snapshot: https://webcams.nyctmc.org/api/cameras/{id}/image. ave/st place the dot on the schematic map grid. Zone: E 65-72, 5th-Lex — only cameras within evidence reach of those blocks.",
   "home": { "lat": 40.7689, "lng": -73.9685, "label": "20 E 68th St" },
   "cameras": [
-    { "id": "81db80c2-13fe-4ae7-8b47-c08aa42d512f", "name": "5 Ave @ 66 St",      "lat": 40.768651, "lng": -73.969814, "dist": 0.07, "ave": "5AV",  "st": 66 },
-    { "id": "b062d611-e0e8-40be-a180-c583391276f5", "name": "Park Ave @ 72 St",   "lat": 40.771140, "lng": -73.963907, "dist": 0.29, "ave": "PARK", "st": 72 },
-    { "id": "65440c6b-ee6c-4406-8542-2992b6edf3f5", "name": "Lexington @ 72 St",  "lat": 40.770429, "lng": -73.962214, "dist": 0.35, "ave": "LEX",  "st": 72 },
-    { "id": "cd949f21-54b2-4d11-8aae-4ffba8654271", "name": "5 Ave @ 60 St",      "lat": 40.764959, "lng": -73.972578, "dist": 0.35, "ave": "5AV",  "st": 60 },
-    { "id": "b5a78bda-3ca9-4ad4-bd03-4cee70baba2d", "name": "5 Ave @ 59 St",      "lat": 40.764289, "lng": -73.973023, "dist": 0.40, "ave": "5AV",  "st": 59 },
-    { "id": "421960d6-54a8-4f12-a5ee-7a07390def4c", "name": "Madison @ 57 St",    "lat": 40.762296, "lng": -73.972357, "dist": 0.50, "ave": "MAD",  "st": 57 },
-    { "id": "f4d2c0f5-0148-45e7-95ba-a5185d8e8060", "name": "Park Ave @ 57 St",   "lat": 40.761616, "lng": -73.970752, "dist": 0.52, "ave": "PARK", "st": 57 },
-    { "id": "5674d0ea-703a-43c3-bea7-2b372d1eb00b", "name": "2 Ave @ 72 St",      "lat": 40.768801, "lng": -73.958427, "dist": 0.53, "ave": "2AV",  "st": 72 },
-    { "id": "180dcc87-d861-43e3-8898-9ad5ee1a26a9", "name": "Lexington @ 57 St",  "lat": 40.760927, "lng": -73.969147, "dist": 0.55, "ave": "LEX",  "st": 57 },
-    { "id": "3df06012-4c10-46e1-81d0-55405342e8df", "name": "3 Ave @ 76 St",      "lat": 40.772340, "lng": -73.958700, "dist": 0.57, "ave": "3AV",  "st": 76 },
-    { "id": "a4bb497d-7e15-47c4-9787-374b013efbbe", "name": "Madison @ 79 St",    "lat": 40.776331, "lng": -73.962123, "dist": 0.61, "ave": "MAD",  "st": 79 },
-    { "id": "41397b64-d035-4b41-a03e-170fe4103d89", "name": "Park Ave @ 79 St",   "lat": 40.775652, "lng": -73.960350, "dist": 0.63, "ave": "PARK", "st": 79 }
+    { "id": "81db80c2-13fe-4ae7-8b47-c08aa42d512f", "name": "5 Ave @ 66 St",     "lat": 40.768651, "lng": -73.969814, "dist": 0.07, "ave": "5AV",  "st": 66 },
+    { "id": "b062d611-e0e8-40be-a180-c583391276f5", "name": "Park Ave @ 72 St",  "lat": 40.771140, "lng": -73.963907, "dist": 0.29, "ave": "PARK", "st": 72 },
+    { "id": "65440c6b-ee6c-4406-8542-2992b6edf3f5", "name": "Lexington @ 72 St", "lat": 40.770429, "lng": -73.962214, "dist": 0.35, "ave": "LEX",  "st": 72 }
   ]
 }
