@@ -344,16 +344,23 @@ function toast(msg) {
 
 // ------------------------------------------------------------------ hunt wiring
 
-async function toggleHunt() {
+function setHuntBtn(state) {
   const btn = $("#huntBtn");
+  btn.classList.remove("on", "loading");
+  btn.disabled = state === "loading";
+  if (state !== "off") btn.classList.add(state);
+  $("#huntBtnLabel").textContent =
+    state === "on" ? "Hunt mode LIVE — stop" :
+    state === "loading" ? "Loading detector…" : "Start hunt mode";
+}
+
+async function toggleHunt() {
   if (App.hunt?.running) {
     App.hunt.stop();
-    btn.textContent = "Start hunt mode";
-    btn.classList.remove("on");
+    setHuntBtn("off");
     return;
   }
-  btn.disabled = true;
-  btn.textContent = "Loading detector…";
+  setHuntBtn("loading");
   try {
     if (!App.hunt) {
       const mod = await import("./hunt.js");
@@ -374,13 +381,10 @@ async function toggleHunt() {
     }
     if (App.priorityIds) App.hunt.setPriority(App.priorityIds);
     await App.hunt.start();
-    btn.textContent = "Stop hunt mode";
-    btn.classList.add("on");
+    setHuntBtn("on");
   } catch (e) {
     $("#huntStatus").textContent = `hunt mode failed: ${e.message}`;
-    btn.textContent = "Start hunt mode";
-  } finally {
-    btn.disabled = false;
+    setHuntBtn("off");
   }
 }
 
