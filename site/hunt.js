@@ -84,6 +84,7 @@ function normBoxes(dets, iw, ih) {
 export function createHunt({ cameras, grid, onEvent, onStatus }) {
   const cams = cameras.cameras.map((c) => ({ ...c, tracker: new Tracker(), card: null }));
   let detector = null, running = false, timer = null, tick = 0, priority = [];
+  if (typeof window !== "undefined") window.__hunt = cams;  // debug/inspection aid
 
   for (const cam of cams) {
     const card = document.createElement("div");

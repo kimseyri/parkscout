@@ -308,14 +308,12 @@ function select(id) {
   App.selected = id;
   paint();
   renderPanel(id);
-  if (App.hunt?.running) {
-    const b = App.blocks.blocks.find((x) => x.id === id);
-    const near = [...App.cameras.cameras]
-      .sort((c1, c2) => haversineMiles(b.lat, b.lng, c1.lat, c1.lng)
-                      - haversineMiles(b.lat, b.lng, c2.lat, c2.lng))
-      .slice(0, 2).map((c) => c.id);
-    App.hunt.setPriority(near);
-  }
+  const b = App.blocks.blocks.find((x) => x.id === id);
+  App.priorityIds = [...App.cameras.cameras]
+    .sort((c1, c2) => haversineMiles(b.lat, b.lng, c1.lat, c1.lng)
+                    - haversineMiles(b.lat, b.lng, c2.lat, c2.lng))
+    .slice(0, 2).map((c) => c.id);
+  App.hunt?.setPriority(App.priorityIds);
   $("#panel").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
@@ -374,6 +372,7 @@ async function toggleHunt() {
         },
       });
     }
+    if (App.priorityIds) App.hunt.setPriority(App.priorityIds);
     await App.hunt.start();
     btn.textContent = "Stop hunt mode";
     btn.classList.add("on");
