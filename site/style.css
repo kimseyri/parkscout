@@ -131,12 +131,23 @@ header { display: flex; justify-content: space-between; align-items: start; gap:
 
 /* hunt mode */
 .hunt { margin-top: 14px; }
-.hunt-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.hunt-head { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
 #huntBtn {
-  display: inline-flex; align-items: center; gap: 9px;
-  border: 1px solid var(--border); border-radius: 10px; padding: 9px 15px;
-  background: var(--surface); color: var(--ink); font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; font-size: 17px;
+  border: 1px solid var(--border); border-radius: 13px; padding: 15px 18px;
+  background: var(--surface); color: var(--ink); font-weight: 700; cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+/* idle = breathing "press me" invitation */
+#huntBtn:not(.on):not(.loading) { animation: huntinvite 2.2s ease-in-out infinite; }
+#huntBtn:not(.on):not(.loading) .hunt-dot { background: var(--good); }
+@keyframes huntinvite {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(12, 163, 12, 0); }
+  50% { transform: scale(1.02); box-shadow: 0 0 20px 3px rgba(12, 163, 12, 0.30); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #huntBtn, .hunt-dot { animation: none !important; }
 }
 .hunt-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); flex: none; }
 #huntBtn.loading { color: var(--ink-2); }
